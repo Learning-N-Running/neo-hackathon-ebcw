@@ -26,4 +26,8 @@ contract Vault {
         deposits[msg.sender] -= amount;
         emit Withdrawn(msg.sender, amount);
     }
+
+    function returnContractAddress() view external returns(address) {
+        return address(this);
+    }
 }

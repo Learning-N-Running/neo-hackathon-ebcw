@@ -12,7 +12,7 @@ describe("Vault with ERC20", function () {
     usdc = await MockUSDC.deploy();
     // await usdc.deployed();
 
-    vault = await Vault.deploy(usdc.address); //error exists in here.
+    vault = await Vault.deploy(await usdc.getAddress());
     // await vault.deployed();
 
     // Mint some Mock USDC tokens to addr1
@@ -21,7 +21,7 @@ describe("Vault with ERC20", function () {
 
   describe("Deposit", function () {
     it("Should deposit tokens into the vault", async function () {
-      await usdc.connect(addr1).approve(vault.address, 500);
+      await usdc.connect(addr1).approve(await vault.getAddress(), 500);
       await vault.connect(addr1).deposit(500);
 
       expect(await vault.deposits(addr1.address)).to.equal(500);
@@ -30,7 +30,7 @@ describe("Vault with ERC20", function () {
 
   describe("Withdraw", function () {
     it("Should withdraw tokens from the vault", async function () {
-      await usdc.connect(addr1).approve(vault.address, 1000);
+      await usdc.connect(addr1).approve(await vault.getAddress(), 1000);
       await vault.connect(addr1).deposit(1000);
 
       await vault.connect(addr1).withdraw(500);

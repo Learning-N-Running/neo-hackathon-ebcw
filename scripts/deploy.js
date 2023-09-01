@@ -9,18 +9,15 @@ const hre = require("hardhat"); //Q. hre가 뭐임?
 async function main() {
   const Vault = await hre.ethers.getContractFactory("Vault");
 
-  const usdcAddress = "0xce221120f145b456ba41b370f11d5e536ecd2bcb"; //WWWW!!!USDC in neo network
+  const tusdcAddress = process.env.TUSDC_ADDRESS_NEO; //test USDC in neoEvm test network
 
-  const vault = await Vault.deploy(usdcAddress);
-  // await vault.deployed();
+  const vault = await Vault.deploy(tusdcAddress);
 
   console.log("Vault deployed to:", await vault.getAddress());
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main()
-  .then(() => (process.exitCode = 0)) //Customize
+  .then(() => (process.exitCode = 0))
   .catch((error) => {
     console.error(error);
     process.exitCode = 1;

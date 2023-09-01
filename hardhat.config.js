@@ -2,9 +2,10 @@ require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
+const NEO_PRIVATE_KEY = process.env.NEO_PRIVATE_KEY;
+
 const SEPOLIA_API_URL = process.env.SEPOLIA_API_URL;
 const SEPOLIA_PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY;
-const NEO_PRIVATE_KEY = process.env.NEO_PRIVATE_KEY;
 
 module.exports = {
   defaultNetwork: "hardhat",

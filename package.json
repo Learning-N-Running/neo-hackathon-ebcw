@@ -10,12 +10,13 @@
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "hardhat": "^2.16.0"
+    "hardhat": "^2.16.2"
   },
   "dependencies": {
     "@alch/alchemy-web3": "^1.4.7",
     "@openzeppelin/contracts": "^4.9.3",
     "dotenv": "^16.3.1",
+    "ethers": "^6.7.1",
     "solidity-coverage": "^0.8.4"
   }
 }

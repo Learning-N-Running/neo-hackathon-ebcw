@@ -11,9 +11,9 @@ async function main() {
     hre.ethers.provider
   );
 
-  //Amount of token to deposit
-  const depositTokenAmount = (200).toString();
-  const depositAmount = ethers.parseUnits(depositTokenAmount, 18);
+  //Amount of token to withdraw
+  const withdrawTokenAmount = (200).toString();
+  const withdrawAmount = ethers.parseUnits(withdrawTokenAmount, 18);
 
   const Vault = await hre.ethers.getContractFactory("Vault");
   const vault = Vault.attach(vaultAddress); //Connect with already deployed Vault contract
@@ -21,18 +21,16 @@ async function main() {
   const tUSDC = await hre.ethers.getContractFactory("MockUSDC");
   const tusdc = tUSDC.attach(tusdcAddress); //Connect with already deployed tUSDC contract
 
-  await tusdc.connect(mySigner).approve(vaultAddress, depositAmount); //Authorize
-
-  const depositTUSDC = await vault.connect(mySigner).deposit(depositAmount);
-  await depositTUSDC.wait();
+  const withdrawTUSDC = await vault.connect(mySigner).withdraw(withdrawAmount);
+  await withdrawTUSDC.wait();
 
   console.log(
-    `Deposited ${depositTokenAmount} tokens to Vault at ${vaultAddress}`
+    `Withdrew ${withdrawTokenAmount} tokens to Vault at ${vaultAddress}`
   );
 }
 
 main()
-  .then(() => (process.exitCode = 0))
+  .then(() => (process.exitCode = 0)) //Customize
   .catch((error) => {
     console.error(error);
     process.exitCode = 1;
